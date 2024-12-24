@@ -28,7 +28,7 @@ const BookDetailsPage = () => {
     useEffect(() => {
         const fetchBookDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/books/id/${id}`);
+                const response = await fetch(`http://localhost:5000/books/${id}`);
                 const data = await response.json();
 
                 if (data.success) {
