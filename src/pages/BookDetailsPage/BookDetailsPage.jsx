@@ -55,45 +55,47 @@ const BookDetailsPage = () => {
         setIsModalOpen(false);
     };
 
+
     const handleBorrow = async () => {
         if (!borrowDetails.returnDate) {
-            alert("Please specify a return date.");
+            alert("Please select a return date.");
             return;
         }
 
-        console.log("Borrow details:", {
+        const borrowData = {
+            bookId: id,
+            name: borrowDetails.name,
+            email: borrowDetails.email,
             returnDate: borrowDetails.returnDate,
-            userName: borrowDetails.name,
-            userEmail: borrowDetails.email,
-        });
+        };
 
         try {
-            const response = await fetch(`http://localhost:5000/books/borrow/${id}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    returnDate: borrowDetails.returnDate,
-                    userName: borrowDetails.name,
-                    userEmail: borrowDetails.email,
-                }),
+            const response = await fetch('http://localhost:5000/borrow', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(borrowData),
             });
 
-            const data = await response.json();
+            const result = await response.json();
 
-            if (data.success) {
-                setBook((prevBook) => ({ ...prevBook, quantity: data.data.quantity }));
-                closeModal();
+            if (result.success) {
                 alert("Book borrowed successfully!");
+                closeModal();
             } else {
-                alert(data.message); // Show an error message from the backend
-                console.error("Failed to borrow book:", data.message);
+                alert(`Failed to borrow book: ${result.message}`);
             }
         } catch (error) {
             console.error("Error borrowing book:", error.message);
-            alert("An error occurred while trying to borrow the book.");
+            alert("An error occurred. Please try again later.");
         }
     };
 
+
+
+
+    
 
     if (!book || !user) {
         return (
@@ -187,6 +189,7 @@ const BookDetailsPage = () => {
                 >
                     Confirm Borrow
                 </button>
+
             </Modal>
         </div>
     );
