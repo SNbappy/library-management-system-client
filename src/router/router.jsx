@@ -12,12 +12,13 @@ import UpdateBook from "../pages/UpdateBook/UpdateBook";
 import BorrowedBooks from "../pages/BorrowedBooks/BorrowedBooks";
 import CategoryBooksPage from "../pages/CategoryBooksPage/CategoryBooksPage";
 import BookDetailsPage from "../pages/BookDetailsPage/BookDetailsPage";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        errorElement: <h2>Route not found</h2>,
+        errorElement: <NotFoundPage></NotFoundPage>,
         children: [
             {
                 path: '/',
