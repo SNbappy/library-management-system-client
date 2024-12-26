@@ -3,6 +3,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/AuthContext/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
@@ -12,6 +13,7 @@ const Register = () => {
         photoURL: "",
         password: "",
     });
+    const navigate = useNavigate(); // Initialize the navigate function
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -56,6 +58,7 @@ const Register = () => {
             }
 
             toast.success("Registered successfully!");
+            navigate("/"); // Redirect to the home page after successful registration
         } catch (error) {
             toast.error(error.message || "Registration failed.");
         }

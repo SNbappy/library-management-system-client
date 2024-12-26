@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/AuthContext/AuthProvider";
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import auth from "../../firebase/firebase.init";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Login = () => {
     const { user, loading } = useContext(AuthContext);
@@ -11,6 +12,7 @@ const Login = () => {
         email: "",
         password: "",
     });
+    const navigate = useNavigate(); // Initialize the navigate function
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,6 +29,7 @@ const Login = () => {
                 formData.password
             );
             toast.success("Logged in successfully!");
+            navigate("/"); // Redirect to the dashboard or another page
         } catch (error) {
             toast.error(error.message || "Login failed.");
         }
@@ -39,6 +42,7 @@ const Login = () => {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
             toast.success("Logged in with Google!");
+            navigate("/dashboard"); // Redirect after Google login
         } catch (error) {
             toast.error(error.message || "Google login failed.");
         }
