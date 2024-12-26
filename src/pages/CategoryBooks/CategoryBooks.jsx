@@ -28,17 +28,33 @@ const CategoryBooks = () => {
     };
 
     return (
-        <div className="container py-8 mx-auto">
-            <h1 className="mb-6 text-3xl font-bold text-center">Book Categories</h1>
+        <div className="container py-8 m-20 mx-auto">
+            <h1 className="mb-8 text-4xl font-extrabold text-center text-gray-800">
+                Explore Book Categories
+            </h1>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                 {categories.map((category) => (
                     <div
                         key={category}
-                        className="p-4 bg-gray-100 rounded-lg shadow cursor-pointer"
+                        className="relative p-6 mx-12 text-white transition-all rounded-lg shadow-lg cursor-pointer bg-gradient-to-r from-blue-500 to-indigo-600 hover:shadow-xl hover:scale-105"
                         onClick={() => handleCategoryClick(category)}
                     >
-                        <h3 className="mb-2 text-lg font-bold text-center">{category}</h3>
+                        {/* Background Illustration (Optional) */}
+                        {/* <div className="absolute inset-0 bg-opacity-20 bg-[url('https://via.placeholder.com/150')] rounded-lg"></div> */}
+
+                        {/* Category Name */}
+                        <h3 className="z-10 mb-2 text-xl font-semibold text-center">
+                            {category}
+                        </h3>
+
+                        {/* Decorative Line */}
+                        <div className="z-10 w-16 h-1 mx-auto my-4 bg-white rounded"></div>
+
+                        {/* Explore Button */}
+                        <p className="z-10 text-sm font-medium text-center">
+                            Discover books in this category
+                        </p>
                     </div>
                 ))}
             </div>

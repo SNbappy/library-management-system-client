@@ -12,6 +12,7 @@ const Banner = () => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
+        arrows: false,
     };
 
     const slides = [
@@ -41,14 +42,24 @@ const Banner = () => {
                 <Slider {...settings}>
                     {slides.map((slide, index) => (
                         <div key={index} className="relative">
+                            {/* Slide Image */}
                             <img
                                 src={slide.image}
                                 alt={slide.title}
                                 className="object-cover w-full rounded-lg shadow-lg h-96"
                             />
-                            <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full text-center text-white bg-black bg-opacity-50">
-                                <h2 className="mb-4 text-3xl font-bold">{slide.title}</h2>
-                                <p className="max-w-lg">{slide.description}</p>
+
+                            {/* Gradient Overlay */}
+                            <div className="absolute top-0 left-0 w-full h-full rounded-lg bg-gradient-to-t from-black via-transparent to-black/25"></div>
+
+                            {/* Text Content */}
+                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
+                                <h2 className="mb-4 text-4xl font-bold tracking-wide md:text-5xl">
+                                    {slide.title}
+                                </h2>
+                                <p className="max-w-xl px-4 text-lg font-medium leading-relaxed">
+                                    {slide.description}
+                                </p>
                             </div>
                         </div>
                     ))}
