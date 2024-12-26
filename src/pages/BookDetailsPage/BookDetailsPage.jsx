@@ -33,7 +33,7 @@ const BookDetailsPage = () => {
     useEffect(() => {
         const fetchBookDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/books/${id}`);
+                const response = await fetch(`https://library-management-system-server-eta.vercel.app/books/${id}`);
                 const data = await response.json();
 
                 if (data.success) {
@@ -49,7 +49,7 @@ const BookDetailsPage = () => {
         const fetchUserBorrowedBooks = async () => {
             if (user) {
                 try {
-                    const response = await fetch(`http://localhost:5000/borrowed-books?email=${user.email}`);
+                    const response = await fetch(`https://library-management-system-server-eta.vercel.app/borrowed-books?email=${user.email}`);
                     const data = await response.json();
 
                     if (data.success) {
@@ -108,7 +108,7 @@ const BookDetailsPage = () => {
         };
 
         try {
-            const response = await fetch("http://localhost:5000/borrow", {
+            const response = await fetch("https://library-management-system-server-eta.vercel.app/borrow", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

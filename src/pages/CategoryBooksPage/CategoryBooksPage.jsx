@@ -10,7 +10,7 @@ const CategoryBooksPage = () => {
     useEffect(() => {
         const fetchBooksByCategory = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/books/category/${category}`);
+                const response = await fetch(`https://library-management-system-server-eta.vercel.app/books/category/${category}`);
                 const data = await response.json();
                 setBooks(data.data || []);
             } catch (error) {

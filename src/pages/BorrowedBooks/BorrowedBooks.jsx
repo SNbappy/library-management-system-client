@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { ScaleLoader } from "react-spinners";
 
 const BorrowedBooks = () => {
     const [borrowedBooks, setBorrowedBooks] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchBorrowedBooks = async () => {
             try {
-                const response = await fetch("http://localhost:5000/borrowed");
+                const response = await fetch("https://library-management-system-server-eta.vercel.app/borrowed");
                 const data = await response.json();
 
                 if (data.success) {
@@ -16,6 +19,9 @@ const BorrowedBooks = () => {
                 }
             } catch (error) {
                 console.error("Error fetching borrowed books:", error.message);
+            } finally {
+                // Simulate a 1.5-second delay before hiding the loader
+                setTimeout(() => setLoading(false), 1500);
             }
         };
 
@@ -24,23 +30,43 @@ const BorrowedBooks = () => {
 
     const handleReturnBook = async (bookId) => {
         try {
-            const response = await fetch(`http://localhost:5000/return/${bookId}`, {
-                method: "DELETE",
+            const confirmation = await Swal.fire({
+                title: "Are you sure?",
+                text: "Do you really want to return this book?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, return it!",
             });
 
-            const result = await response.json();
+            if (confirmation.isConfirmed) {
+                const response = await fetch(`https://library-management-system-server-eta.vercel.app/return/${bookId}`, {
+                    method: "DELETE",
+                });
 
-            if (result.success) {
-                alert("Book returned successfully!");
-                setBorrowedBooks((prevBooks) => prevBooks.filter((book) => book._id !== bookId));
-            } else {
-                alert(`Failed to return book: ${result.message}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    Swal.fire("Returned!", "The book has been returned successfully.", "success");
+                    setBorrowedBooks((prevBooks) => prevBooks.filter((book) => book._id !== bookId));
+                } else {
+                    Swal.fire("Failed!", `Could not return the book: ${result.message}`, "error");
+                }
             }
         } catch (error) {
             console.error("Error returning book:", error.message);
-            alert("An error occurred. Please try again later.");
+            Swal.fire("Error!", "An error occurred. Please try again later.", "error");
         }
     };
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <ScaleLoader color="#4A90E2" loading={loading} height={50} width={6} radius={2} margin={4} />
+            </div>
+        );
+    }
 
     if (borrowedBooks.length === 0) {
         return (
