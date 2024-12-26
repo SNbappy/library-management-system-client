@@ -73,11 +73,11 @@ const AllBooks = () => {
                             key={book._id}
                             className="p-6 transition-all bg-white rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-1"
                         >
-                            <div className="relative w-full overflow-hidden rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600">
+                            <div className="relative rounded-lg w-overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-600 w-[60%] mx-auto">
                                 <img
                                     src={book.image || "https://via.placeholder.com/150"}
                                     alt={book.name || "Book Cover"}
-                                    className="object-cover w-full h-full"
+                                    className="object-cover w-full"
                                 />
                             </div>
                             <h2 className="mt-4 text-lg font-bold text-gray-800 truncate">
