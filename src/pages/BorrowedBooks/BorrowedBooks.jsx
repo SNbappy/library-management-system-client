@@ -23,7 +23,6 @@ const BorrowedBooks = () => {
             } catch (error) {
                 console.error("Error fetching borrowed books:", error.message);
             } finally {
-                // Simulate a 1.5-second delay before hiding the loader
                 setTimeout(() => setLoading(false), 1500);
             }
         };

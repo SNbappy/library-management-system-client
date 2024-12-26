@@ -5,6 +5,8 @@ import Modal from "react-modal";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { ScaleLoader } from "react-spinners";
+
 
 const MySwal = withReactContent(Swal);
 
@@ -16,6 +18,8 @@ const BookDetailsPage = () => {
     const [user, setUser] = useState(null);
     const [userBorrowedBooks, setUserBorrowedBooks] = useState([]);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         
@@ -34,8 +38,10 @@ const BookDetailsPage = () => {
     }, []);
 
     useEffect(() => {
+        
         const fetchBookDetails = async () => {
             try {
+                setLoading(true);
                 const response = await fetch(`https://library-management-system-server-eta.vercel.app/books/${id}`);
                 const data = await response.json();
 
@@ -44,10 +50,14 @@ const BookDetailsPage = () => {
                 } else {
                     MySwal.fire("Error", data.message, "error");
                 }
+
+                setTimeout(() => setLoading(false), 1500);
             } catch (error) {
                 MySwal.fire("Error", error.message, "error");
+                setLoading(false); 
             }
         };
+
 
         const fetchUserBorrowedBooks = async () => {
             if (user) {
@@ -58,7 +68,6 @@ const BookDetailsPage = () => {
                     if (data.success) {
                         setUserBorrowedBooks(data.data);
 
-                        // Store the borrowed books in localStorage for persistent state
                         localStorage.setItem(user.email, JSON.stringify(data.data.map(book => book.bookId)));
                     } else {
                         console.error("Error fetching user borrowed books:", data.message);
@@ -73,7 +82,6 @@ const BookDetailsPage = () => {
         fetchUserBorrowedBooks();
     }, [id, user]);
 
-    // Check if the book is already borrowed
     const isAlreadyBorrowed = () => {
         const borrowedBooksFromStorage = JSON.parse(localStorage.getItem(user?.email)) || [];
         return borrowedBooksFromStorage.includes(id);
@@ -96,7 +104,6 @@ const BookDetailsPage = () => {
             return;
         }
 
-        // Check if the user has already borrowed this book
         if (isAlreadyBorrowed()) {
             MySwal.fire("Error", "You have already borrowed this book.", "error");
             closeModal();
@@ -125,16 +132,13 @@ const BookDetailsPage = () => {
                 MySwal.fire("Success", "Book borrowed successfully!", "success");
                 closeModal();
 
-                // Decrease the quantity in the local state
                 setBook((prevBook) => ({
                     ...prevBook,
                     quantity: prevBook.quantity - 1,
                 }));
 
-                // Update the borrowed books list
                 setUserBorrowedBooks((prevBooks) => [...prevBooks, { bookId: id }]);
 
-                // Store the borrowed book ID in localStorage
                 const updatedBorrowedBooks = [...userBorrowedBooks, { bookId: id }];
                 localStorage.setItem(user.email, JSON.stringify(updatedBorrowedBooks.map(book => book.bookId)));
             } else {
@@ -145,10 +149,10 @@ const BookDetailsPage = () => {
         }
     };
 
-    if (!book || !user) {
+    if (loading) {
         return (
             <div className="flex items-center justify-center h-screen">
-                <p className="text-xl font-bold">Loading...</p>
+                <ScaleLoader color="#1D4ED8" height={50} width={8} radius={4} />
             </div>
         );
     }
