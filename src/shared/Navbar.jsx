@@ -5,7 +5,7 @@ import { signOut } from "firebase/auth";
 import auth from "../firebase/firebase.init";
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext); 
+    const { user } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleLogout = async () => {
@@ -56,20 +56,15 @@ const Navbar = () => {
                     </Link>
 
                     {/* Protected Routes */}
-                    {user && (
-                        <>
-                            <Link to="/all-books" className="text-white hover:text-gray-300">
-                                All Books
-                            </Link>
-                            <Link to="/add-book" className="text-white hover:text-gray-300">
-                                Add Book
-                            </Link>
-                            <Link to="/borrowed-books" className="text-white hover:text-gray-300">
-                                Borrowed Books
-                            </Link>
-                        </>
-                    )}
-
+                    <Link to="/all-books" className="text-white hover:text-gray-300">
+                        All Books
+                    </Link>
+                    <Link to="/add-book" className="text-white hover:text-gray-300">
+                        Add Book
+                    </Link>
+                    <Link to="/borrowed-books" className="text-white hover:text-gray-300">
+                        Borrowed Books
+                    </Link>
                     {/* Conditional Login/Register */}
                     {!user ? (
                         <>

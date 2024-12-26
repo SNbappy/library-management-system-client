@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import { ScaleLoader } from "react-spinners";
 
 const AllBooks = () => {
     const [books, setBooks] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [showAvailable, setShowAvailable] = useState(false);
     const [viewMode, setViewMode] = useState("Card");
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
+        setLoading(true);
+
         const fetchBooks = async () => {
             try {
                 const response = await fetch("http://localhost:5000/books");
@@ -19,11 +23,14 @@ const AllBooks = () => {
                 setFilteredBooks(booksData);
             } catch (error) {
                 console.error("Error fetching books:", error.message);
+            } finally {
+                setTimeout(() => setLoading(false), 1500);
             }
         };
+
         fetchBooks();
     }, []);
-
+    
     const toggleAvailableFilter = () => {
         setShowAvailable((prev) => !prev);
         if (!showAvailable) {
@@ -41,6 +48,15 @@ const AllBooks = () => {
         navigate(`/update-book/${id}`);
     };
 
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <ScaleLoader color="#4fa94d" loading={loading} size={50} />
+
+            </div>
+        );
+    }
+
     return (
         <div className="m-4">
             {/* Filter and View Mode Controls */}
@@ -48,8 +64,8 @@ const AllBooks = () => {
                 <button
                     onClick={toggleAvailableFilter}
                     className={`px-4 py-2 rounded-md transition-all ${showAvailable
-                            ? "bg-blue-500 text-white"
-                            : "bg-gray-200 text-gray-700"
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-200 text-gray-700"
                         }`}
                 >
                     {showAvailable ? "Show All Books" : "Show Available Books"}

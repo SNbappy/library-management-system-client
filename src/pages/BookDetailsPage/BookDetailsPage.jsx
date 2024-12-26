@@ -3,6 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import Modal from "react-modal";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const BookDetailsPage = () => {
     const { id } = useParams();
@@ -10,6 +14,7 @@ const BookDetailsPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [borrowDetails, setBorrowDetails] = useState({ returnDate: "", name: "", email: "" });
     const [user, setUser] = useState(null);
+    const [userBorrowedBooks, setUserBorrowedBooks] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -34,15 +39,33 @@ const BookDetailsPage = () => {
                 if (data.success) {
                     setBook(data.data);
                 } else {
-                    console.error("Failed to fetch book details:", data.message);
+                    MySwal.fire("Error", data.message, "error");
                 }
             } catch (error) {
-                console.error("Error fetching book details:", error.message);
+                MySwal.fire("Error", error.message, "error");
+            }
+        };
+
+        const fetchUserBorrowedBooks = async () => {
+            if (user) {
+                try {
+                    const response = await fetch(`http://localhost:5000/borrowed-books?email=${user.email}`);
+                    const data = await response.json();
+
+                    if (data.success) {
+                        setUserBorrowedBooks(data.data);
+                    } else {
+                        console.error("Error fetching user borrowed books:", data.message);
+                    }
+                } catch (error) {
+                    console.error("Error fetching user borrowed books:", error.message);
+                }
             }
         };
 
         fetchBookDetails();
-    }, [id]);
+        fetchUserBorrowedBooks();
+    }, [id, user]);
 
     const openModal = () => {
         if (user) {
@@ -57,7 +80,15 @@ const BookDetailsPage = () => {
 
     const handleBorrow = async () => {
         if (!borrowDetails.returnDate) {
-            alert("Please select a return date.");
+            MySwal.fire("Warning", "Please select a return date.", "warning");
+            return;
+        }
+
+        // Check if the user has already borrowed this book
+        const isAlreadyBorrowed = userBorrowedBooks.some((borrowedBook) => borrowedBook.bookId === id);
+        if (isAlreadyBorrowed) {
+            MySwal.fire("Error", "You have already borrowed this book.", "error");
+            closeModal();
             return;
         }
 
@@ -80,14 +111,22 @@ const BookDetailsPage = () => {
             const result = await response.json();
 
             if (result.success) {
-                alert("Book borrowed successfully!");
+                MySwal.fire("Success", "Book borrowed successfully!", "success");
                 closeModal();
+
+                // Decrease the quantity in the local state
+                setBook((prevBook) => ({
+                    ...prevBook,
+                    quantity: prevBook.quantity - 1,
+                }));
+
+                // Update user's borrowed books
+                setUserBorrowedBooks((prevBooks) => [...prevBooks, { bookId: id }]);
             } else {
-                alert(`Failed to borrow book: ${result.message}`);
+                MySwal.fire("Error", result.message, "error");
             }
         } catch (error) {
-            console.error("Error borrowing book:", error.message);
-            alert("An error occurred. Please try again later.");
+            MySwal.fire("Error", "An error occurred. Please try again later.", "error");
         }
     };
 
@@ -142,8 +181,8 @@ const BookDetailsPage = () => {
                         <button
                             onClick={openModal}
                             className={`px-6 py-3 mt-6 text-white text-lg font-semibold rounded-lg shadow-md transition-transform transform-gpu ${book.quantity > 0
-                                    ? "bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105"
-                                    : "bg-gray-400 cursor-not-allowed"
+                                ? "bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105"
+                                : "bg-gray-400 cursor-not-allowed"
                                 }`}
                             disabled={book.quantity === 0}
                         >

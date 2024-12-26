@@ -37,7 +37,7 @@ const Banner = () => {
     ];
 
     return (
-        <div className="py-8 bg-blue-100">
+        <div className="bg-blue-100">
             <div className="container mx-auto">
                 <Slider {...settings}>
                     {slides.map((slide, index) => (
@@ -46,7 +46,7 @@ const Banner = () => {
                             <img
                                 src={slide.image}
                                 alt={slide.title}
-                                className="object-cover w-full rounded-lg shadow-lg h-96"
+                                className="object-cover w-full shadow-lg h-96 md:h-[500px] lg:h-[600px]"
                             />
 
                             {/* Gradient Overlay */}

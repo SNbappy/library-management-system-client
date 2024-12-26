@@ -13,6 +13,7 @@ import BorrowedBooks from "../pages/BorrowedBooks/BorrowedBooks";
 import CategoryBooksPage from "../pages/CategoryBooksPage/CategoryBooksPage";
 import BookDetailsPage from "../pages/BookDetailsPage/BookDetailsPage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
