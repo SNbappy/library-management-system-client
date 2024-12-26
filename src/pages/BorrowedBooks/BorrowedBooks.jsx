@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const BorrowedBooksPage = () => {
+const BorrowedBooks = () => {
     const [borrowedBooks, setBorrowedBooks] = useState([]);
 
     useEffect(() => {
@@ -82,4 +82,4 @@ const BorrowedBooksPage = () => {
     );
 };
 
-export default BorrowedBooksPage;
+export default BorrowedBooks;

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import AuthContext from '../context/AuthContext/AuthContext';
+import { AuthContext } from '../context/AuthContext/AuthProvider';
 import { Navigate, useLocation } from 'react-router-dom';
 
 const PrivateRoute = ({ children }) => {
@@ -7,14 +7,13 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
 
     if (loading) {
-        return <span className="loading loading-ring loading-lg"></span>
+        return <span className="loading loading-ring loading-lg"></span>;
     }
 
     if (user) {
         return children;
     }
 
-    // Redirecting to /login instead of /signIn
     return <Navigate to="/login" state={{ from: location }} replace />;
 };
 

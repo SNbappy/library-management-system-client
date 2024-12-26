@@ -30,7 +30,7 @@ const AllBooks = () => {
 
         fetchBooks();
     }, []);
-    
+
     const toggleAvailableFilter = () => {
         setShowAvailable((prev) => !prev);
         if (!showAvailable) {

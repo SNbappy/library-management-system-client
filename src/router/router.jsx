@@ -27,19 +27,19 @@ const router = createBrowserRouter([
             },
             {
                 path: 'add-book',
-                element: <AddBook></AddBook>
+                element: <PrivateRoute><AddBook></AddBook></PrivateRoute>
             },
             {
                 path: 'all-books',
-                element: <AllBooks></AllBooks>
+                element: <PrivateRoute><AllBooks></AllBooks></PrivateRoute>
             },
             {
                 path: 'update-book/:id',
-                element: <UpdateBook></UpdateBook>
+                element: <PrivateRoute><UpdateBook></UpdateBook></PrivateRoute>
             },
             {
                 path: 'borrowed-books',
-                element: <BorrowedBooks></BorrowedBooks>
+                element: <PrivateRoute><BorrowedBooks></BorrowedBooks></PrivateRoute>
             },
             {
                 path: 'books/category/:category',
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'book/:id',
-                element: <BookDetailsPage/>
+                element: <PrivateRoute><BookDetailsPage /></PrivateRoute>
             },
             {
                 path: 'login',
