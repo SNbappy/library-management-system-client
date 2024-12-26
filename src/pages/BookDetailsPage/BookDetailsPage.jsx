@@ -54,6 +54,9 @@ const BookDetailsPage = () => {
 
                     if (data.success) {
                         setUserBorrowedBooks(data.data);
+
+                        // Store the borrowed books in localStorage for persistent state
+                        localStorage.setItem(user.email, JSON.stringify(data.data.map(book => book.bookId)));
                     } else {
                         console.error("Error fetching user borrowed books:", data.message);
                     }
@@ -66,6 +69,12 @@ const BookDetailsPage = () => {
         fetchBookDetails();
         fetchUserBorrowedBooks();
     }, [id, user]);
+
+    // Check if the book is already borrowed
+    const isAlreadyBorrowed = () => {
+        const borrowedBooksFromStorage = JSON.parse(localStorage.getItem(user?.email)) || [];
+        return borrowedBooksFromStorage.includes(id);
+    };
 
     const openModal = () => {
         if (user) {
@@ -85,8 +94,7 @@ const BookDetailsPage = () => {
         }
 
         // Check if the user has already borrowed this book
-        const isAlreadyBorrowed = userBorrowedBooks.some((borrowedBook) => borrowedBook.bookId === id);
-        if (isAlreadyBorrowed) {
+        if (isAlreadyBorrowed()) {
             MySwal.fire("Error", "You have already borrowed this book.", "error");
             closeModal();
             return;
@@ -120,8 +128,12 @@ const BookDetailsPage = () => {
                     quantity: prevBook.quantity - 1,
                 }));
 
-                // Update user's borrowed books
+                // Update the borrowed books list
                 setUserBorrowedBooks((prevBooks) => [...prevBooks, { bookId: id }]);
+
+                // Store the borrowed book ID in localStorage
+                const updatedBorrowedBooks = [...userBorrowedBooks, { bookId: id }];
+                localStorage.setItem(user.email, JSON.stringify(updatedBorrowedBooks.map(book => book.bookId)));
             } else {
                 MySwal.fire("Error", result.message, "error");
             }
@@ -180,11 +192,11 @@ const BookDetailsPage = () => {
                         </div>
                         <button
                             onClick={openModal}
-                            className={`px-6 py-3 mt-6 text-white text-lg font-semibold rounded-lg shadow-md transition-transform transform-gpu ${book.quantity > 0
+                            className={`px-6 py-3 mt-6 text-white text-lg font-semibold rounded-lg shadow-md transition-transform transform-gpu ${book.quantity > 0 && !isAlreadyBorrowed()
                                 ? "bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105"
                                 : "bg-gray-400 cursor-not-allowed"
                                 }`}
-                            disabled={book.quantity === 0}
+                            disabled={book.quantity === 0 || isAlreadyBorrowed()}
                         >
                             Borrow
                         </button>
