@@ -10,7 +10,7 @@ The purpose of **QuillStacks** is to streamline the library management process f
 
 ## Live URL
 
-[QuillStacks Live](https://your-live-url.com) *(Replace with the actual live URL once deployed)*
+[QuillStacks Live](https://quillstacks-d1bc7.web.app/) 
 
 ## Key Features
 
