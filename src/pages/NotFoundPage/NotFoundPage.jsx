@@ -2,6 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const NotFoundPage = () => {
+
+    useEffect(() => {
+        document.title = "404 Not Found";
+    }, []);
+
     const navigate = useNavigate();
 
     return (

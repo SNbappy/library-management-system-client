@@ -8,6 +8,9 @@ const CategoryBooksPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+
+        document.title = `Books in ${category}`;
+        
         const fetchBooksByCategory = async () => {
             try {
                 const response = await fetch(`https://library-management-system-server-eta.vercel.app/books/category/${category}`);

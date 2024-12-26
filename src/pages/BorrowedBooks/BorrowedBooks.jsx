@@ -7,6 +7,9 @@ const BorrowedBooks = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+
+        document.title = "Borrowed Books";
+        
         const fetchBorrowedBooks = async () => {
             try {
                 const response = await fetch("https://library-management-system-server-eta.vercel.app/borrowed");

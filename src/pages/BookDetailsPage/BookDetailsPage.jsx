@@ -18,6 +18,9 @@ const BookDetailsPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        
+        document.title = "Book Details";
+        
         const auth = getAuth();
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
             if (firebaseUser) {

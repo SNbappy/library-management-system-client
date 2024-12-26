@@ -12,6 +12,9 @@ const AllBooks = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+
+        document.title = "All Books";
+
         setLoading(true);
 
         const fetchBooks = async () => {

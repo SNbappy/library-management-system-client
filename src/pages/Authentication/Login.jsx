@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/AuthContext/AuthProvider";
@@ -7,6 +7,12 @@ import auth from "../../firebase/firebase.init";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Login = () => {
+
+    useEffect(() => {
+        document.title = "Login";
+    }, []);
+
+    
     const { user, loading } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         email: "",

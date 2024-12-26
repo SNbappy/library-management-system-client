@@ -6,6 +6,11 @@ import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Register = () => {
+
+    useEffect(() => {
+        document.title = "Register";
+    }, []);
+    
     const { createUser } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         name: "",

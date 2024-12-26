@@ -14,6 +14,9 @@ const UpdateBook = () => {
     });
 
     useEffect(() => {
+
+        document.title = "Update Book";
+
         const fetchBook = async () => {
             try {
                 const response = await fetch(`https://https://library-management-system-server-eta.vercel.app/books/${id}`);
