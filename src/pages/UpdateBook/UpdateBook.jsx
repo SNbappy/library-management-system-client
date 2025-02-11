@@ -14,12 +14,9 @@ const UpdateBook = () => {
     });
 
     useEffect(() => {
-
-        document.title = "Update Book";
-
         const fetchBook = async () => {
             try {
-                const response = await fetch(`https://https://library-management-system-server-eta.vercel.app/books/${id}`);
+                const response = await fetch(`https://library-management-system-server-eta.vercel.app/books/${id}`);
                 const book = await response.json();
                 setFormData(book.data || {});
             } catch (error) {
@@ -38,7 +35,7 @@ const UpdateBook = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`https://https://library-management-system-server-eta.vercel.app/books/${id}`, {
+            const response = await fetch(`https://library-management-system-server-eta.vercel.app/books/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

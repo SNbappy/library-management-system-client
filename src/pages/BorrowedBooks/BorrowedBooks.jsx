@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { ScaleLoader } from "react-spinners";
+import { AuthContext } from "../../context/AuthContext/AuthProvider";
 
 const BorrowedBooks = () => {
     const [borrowedBooks, setBorrowedBooks] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { userEmail } = useContext(AuthContext);
+    // console.log(userEmail);
 
     useEffect(() => {
 
         document.title = "Borrowed Books";
-        
+        console.log(userEmail);
+
         const fetchBorrowedBooks = async () => {
             try {
-                const response = await fetch("https://library-management-system-server-eta.vercel.app/borrowed");
+                const response = await fetch(`https://library-management-system-server-eta.vercel.app/borrowed?userEmail=${userEmail}`);
                 const data = await response.json();
 
                 if (data.success) {

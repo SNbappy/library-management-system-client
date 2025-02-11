@@ -42,6 +42,7 @@ const AuthProvider = ({ children }) => {
 
     const authInfo = {
         user,
+        userEmail: user ? user.email : null,  // Add userEmail to authInfo
         loading,
         createUser,
         signInUser,
