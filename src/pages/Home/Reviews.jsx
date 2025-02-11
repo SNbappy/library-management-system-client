@@ -25,10 +25,10 @@ const Reviews = () => {
     ];
 
     return (
-        <section className="py-16 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700">
-            <div className="container mx-auto text-center text-white">
+        <section className="py-16">
+            <div className="container mx-auto text-center">
                 <h2 className="mb-8 text-4xl font-extrabold">What Our Users Say</h2>
-                <p className="mb-16 text-lg font-medium text-gray-300">
+                <p className="mb-16 text-lg font-medium">
                     Hear from some of our happy users about their experience with
                     QuillStacks.
                 </p>

@@ -2,10 +2,10 @@ import React from "react";
 
 const WhyChoose = () => {
     return (
-        <section className="py-16 bg-gradient-to-r from-blue-500 to-teal-500">
+        <section className="py-16">
             <div className="container mx-auto text-center">
-                <h2 className="mb-8 text-4xl font-semibold text-white">Why Choose QuillStacks?</h2>
-                <p className="mb-16 text-lg text-gray-200">
+                <h2 className="mb-8 text-4xl font-semibold">Why Choose QuillStacks?</h2>
+                <p className="mb-16 text-lg">
                     QuillStacks transforms library management into a seamless, modern experience with intuitive features and real-time updates.
                 </p>
                 <div className="grid grid-cols-1 gap-12 mx-20 md:grid-cols-3 lg:grid-cols-3">
