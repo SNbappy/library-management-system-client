@@ -32,14 +32,13 @@ const CategoryBooksPage = () => {
     }, [category]);
 
     return (
-        <div className="container px-6 py-12 mx-auto">
-            <h1 className="mb-8 text-4xl font-semibold text-center text-gray-800">
-                Books in <span className="text-blue-600">{category}</span>
+        <div className="container mx-auto pt-28 max-w-[1250px]">
+            <h1 className="text-4xl font-extrabold text-center text-[#003366] mb-10 px-4 md:px-6 lg:px-8 xl:px-0">
+                Books in <span className="text-[#003366]">{category}</span>
             </h1>
-
             {loading ? (
-                <div className="flex items-center justify-center h-64">
-                    <ScaleLoader color="#1D4ED8" height={50} width={8} radius={4} />
+                <div className="flex items-center justify-center h-screen">
+                    <ScaleLoader color="#003366" loading={loading} size={100} />
                 </div>
             ) : (
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

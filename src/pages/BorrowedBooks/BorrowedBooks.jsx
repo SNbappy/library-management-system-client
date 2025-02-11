@@ -69,7 +69,7 @@ const BorrowedBooks = () => {
     if (loading) {
         return (
             <div className="flex items-center justify-center h-screen">
-                <ScaleLoader color="#4A90E2" loading={loading} height={50} width={6} radius={2} margin={4} />
+                <ScaleLoader color="#003366" loading={loading} size={100} />
             </div>
         );
     }

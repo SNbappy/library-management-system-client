@@ -10,13 +10,13 @@ const MainLayout = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 1000); // Simulating data fetching time (adjust as needed)
+        }, 1000);
 
         return () => clearTimeout(timer);
     }, []);
 
     if (loading) {
-        return <Loader />; // Show loader before rendering anything
+        return <Loader />;
     }
 
     return (

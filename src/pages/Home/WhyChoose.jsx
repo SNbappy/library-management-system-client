@@ -3,7 +3,7 @@ import React from "react";
 const WhyChoose = () => {
     return (
         <section className="mb-20">
-            <div className="container mx-auto text-center max-w-[1250px]">
+            <div className="container mx-auto text-center max-w-[1250px]px-4 md:px-6 lg:px-8 xl:px-0">
                 {/* <h2 className="text-4xl font-extrabold text-[#003366]">Why Choose QuillStacks?</h2>
                 <p className="text-lg">
                     QuillStacks transforms library management into a seamless, modern experience with intuitive features and real-time updates.
