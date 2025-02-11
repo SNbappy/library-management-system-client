@@ -17,13 +17,12 @@ const Navbar = () => {
     };
 
     return (
-        <div className="bg-[#5D1049] shadow-md">
+        <div className="bg-[#003366] shadow-md top-0 left-0 right-0 fixed z-50">
             <nav>
-                <div className="max-w-[1250px] mx-auto flex items-center justify-between py-4 px-4 md:px-6 lg:px-8 xl:px-0">
-                    <div className="text-2xl font-semibold text-white">
-                        <Link to="/">QuillStacks</Link>
+                <div className="max-w-[1250px] mx-auto flex items-center justify-between py-2 px-4 md:px-6 lg:px-8 xl:px-0">
+                    <div className="text-4xl font-extrabold text-white">
+                        <Link to="/"><img src="/src/assets/logo-updated_enhanced.png" alt="" className="w-40" /></Link>
                     </div>
-
                     <div className="block lg:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
@@ -46,7 +45,7 @@ const Navbar = () => {
                         </button>
                     </div>
 
-                    <div className={`lg:flex items-center space-x-6 ${isOpen ? "block" : "hidden"} lg:block`}>
+                    <div className={`lg:flex items-center space-x-8 ${isOpen ? "block" : "hidden"} lg:block text-lg font-semibold`}>
                         <Link to="/" className="text-white hover:text-gray-300">Home</Link>
                         <Link to="/all-books" className="text-white hover:text-gray-300">All Books</Link>
                         <Link to="/add-book" className="text-white hover:text-gray-300">Add Book</Link>

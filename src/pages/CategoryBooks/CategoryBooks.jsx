@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import drama from "../../assets/drama.jpg";
+import thriller from "../../assets/psychological-thrillers-3-.webp";
+import history from "../../assets/History.webp";
+import novel from "../../assets/novel.jpg";
+
 const CategoryBooks = () => {
     const [categories, setCategories] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-
         document.title = "Explore Categories";
 
         const fetchCategories = async () => {
@@ -30,36 +34,49 @@ const CategoryBooks = () => {
         navigate(`/books/category/${category.toLowerCase()}`);
     };
 
+    // Map category names to images
+    const categoryImages = {
+        Drama: drama,
+        Thriller: thriller,
+        History: history,
+        Novel: novel,
+    };
+
     return (
-        <div className="container py-8 m-20 mx-auto">
-            <h1 className="mb-8 text-4xl font-extrabold text-center text-gray-800">
-                Explore Book Categories
-            </h1>
+        <div className="mb-20">
+            <div className="container max-w-[1250px] mx-auto px-4 md:px-6 lg:px-8 xl:px-0">
+                <h1 className="text-4xl font-extrabold text-center text-[#003366] mb-5">
+                    Explore Book Categories
+                </h1>
+                <p className="mb-10 text-lg font-medium text-center text-gray-700">Discover a world of stories! Explore diverse book categories and find your next great read.</p>
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+                    {categories.map((category) => (
+                        <div
+                            key={category}
+                            className="relative flex items-center justify-center h-56 overflow-hidden rounded-lg shadow-lg cursor-pointer group"
+                            onClick={() => handleCategoryClick(category)}
+                        >
+                            {/* Background Image */}
+                            <img
+                                src={categoryImages[category] || novel} // Default to 'novel' image if no match
+                                alt={category}
+                                className="absolute inset-0 object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                            />
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-                {categories.map((category) => (
-                    <div
-                        key={category}
-                        className="relative p-6 mx-12 text-white transition-all rounded-lg shadow-lg cursor-pointer bg-gradient-to-r from-blue-500 to-indigo-600 hover:shadow-xl hover:scale-105"
-                        onClick={() => handleCategoryClick(category)}
-                    >
-                        {/* Background Illustration (Optional) */}
-                        {/* <div className="absolute inset-0 bg-opacity-20 bg-[url('https://via.placeholder.com/150')] rounded-lg"></div> */}
+                            {/* Overlay */}
+                            <div className="absolute inset-0 transition-all bg-black bg-opacity-50 group-hover:bg-opacity-60"></div>
 
-                        {/* Category Name */}
-                        <h3 className="z-10 mb-2 text-xl font-semibold text-center">
-                            {category}
-                        </h3>
-
-                        {/* Decorative Line */}
-                        <div className="z-10 w-16 h-1 mx-auto my-4 bg-white rounded"></div>
-
-                        {/* Explore Button */}
-                        <p className="z-10 text-sm font-medium text-center">
-                            Discover books in this category
-                        </p>
-                    </div>
-                ))}
+                            {/* Category Content */}
+                            <div className="relative z-10 text-center text-white">
+                                <h3 className="text-4xl font-bold">{category}</h3>
+                                {/* <div className="w-12 h-1 mx-auto my-2 bg-white rounded"></div> */}
+                                {/* <p className="text-sm font-medium opacity-90">
+                                    Discover books in this category
+                                </p> */}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

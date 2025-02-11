@@ -54,8 +54,7 @@ const AllBooks = () => {
     if (loading) {
         return (
             <div className="flex items-center justify-center h-screen">
-                <ScaleLoader color="#4fa94d" loading={loading} size={50} />
-
+                <ScaleLoader color="#003366" loading={loading} size={100} />
             </div>
         );
     }
@@ -67,7 +66,7 @@ const AllBooks = () => {
                 <button
                     onClick={toggleAvailableFilter}
                     className={`px-4 py-2 rounded-md transition-all ${showAvailable
-                        ? "bg-blue-500 text-white"
+                        ? "bg-[#003366] text-white"
                         : "bg-gray-200 text-gray-700"
                         }`}
                 >
@@ -92,7 +91,7 @@ const AllBooks = () => {
                             key={book._id}
                             className="p-6 transition-all bg-white rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-1"
                         >
-                            <div className="relative rounded-lg w-overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-600 w-[60%] mx-auto">
+                            <div className="relative rounded-lg w-overflow-hidden bg-gradient-to-r from-[#003366] to-indigo-600 w-[60%] mx-auto">
                                 <img
                                     src={book.image || "https://via.placeholder.com/150"}
                                     alt={book.name || "Book Cover"}
@@ -165,7 +164,7 @@ const AllBooks = () => {
                                 <td className="px-4 py-2 border border-gray-300">
                                     <button
                                         onClick={() => handleUpdate(book._id)}
-                                        className="px-2 py-1 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                                        className="px-2 py-1 text-white bg-[#003366] rounded-md hover:bg-blue-600"
                                     >
                                         Update
                                     </button>

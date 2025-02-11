@@ -22,9 +22,9 @@ const BookDetailsPage = () => {
 
 
     useEffect(() => {
-        
+
         document.title = "Book Details";
-        
+
         const auth = getAuth();
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
             if (firebaseUser) {
@@ -38,7 +38,7 @@ const BookDetailsPage = () => {
     }, []);
 
     useEffect(() => {
-        
+
         const fetchBookDetails = async () => {
             try {
                 setLoading(true);
@@ -54,7 +54,7 @@ const BookDetailsPage = () => {
                 setTimeout(() => setLoading(false), 1500);
             } catch (error) {
                 MySwal.fire("Error", error.message, "error");
-                setLoading(false); 
+                setLoading(false);
             }
         };
 
@@ -200,7 +200,7 @@ const BookDetailsPage = () => {
                         <button
                             onClick={openModal}
                             className={`px-6 py-3 mt-6 text-white text-lg font-semibold rounded-lg shadow-md transition-transform transform-gpu ${book.quantity > 0 && !isAlreadyBorrowed()
-                                ? "bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105"
+                                ? "bg-gradient-to-r from-[#003366] to-blue-700 hover:scale-105"
                                 : "bg-gray-400 cursor-not-allowed"
                                 }`}
                             disabled={book.quantity === 0 || isAlreadyBorrowed()}

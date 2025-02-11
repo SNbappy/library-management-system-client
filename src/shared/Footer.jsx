@@ -3,7 +3,7 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="text-white bg-[#5D1049]">
+        <footer className="text-white bg-[#003366] pt-8">
             <div className="mx-auto  max-w-[1250px] px-4 md:px-6 lg:px-8 xl:px-0">
                 <div className="container grid justify-between grid-cols-1 gap-8 md:grid-cols-3">
                     {/* About Section */}
@@ -84,7 +84,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <hr className="my-4"/>
+                <hr className="my-4" />
                 <div className="py-2 text-center text-gray-300">
                     &copy; {new Date().getFullYear()} QuillStacks. All rights reserved.
                 </div>

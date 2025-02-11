@@ -37,7 +37,7 @@ const Banner = () => {
     ];
 
     return (
-        <div className="bg-blue-100">
+        <div className="mb-20 bg-blue-100">
             {/* Ensure full width */}
             <div className="w-screen overflow-hidden">
                 <Slider {...settings}>
@@ -47,7 +47,7 @@ const Banner = () => {
                             <img
                                 src={slide.image}
                                 alt={slide.title}
-                                className="object-cover w-screen h-96 md:h-[500px] lg:h-[600px] shadow-lg"
+                                className="object-cover w-screen h-[500px] md:h-[600px] lg:h-[700px] shadow-lg"
                             />
 
                             {/* Gradient Overlay */}

@@ -10,7 +10,7 @@ const NotFoundPage = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500">
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-[#003366] via-purple-500 to-indigo-500">
             <div className="max-w-lg p-8 text-center rounded-lg shadow-lg bg-white/90 backdrop-blur-md">
                 <h1 className="font-bold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
                     404
