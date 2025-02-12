@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Button, Typography } from "@mui/material";
 import ReactStars from "react-rating-stars-component";
 import { ScaleLoader } from "react-spinners";
 
@@ -17,7 +18,6 @@ const CategoryBooksPage = () => {
                 setLoading(true);
                 const response = await fetch(`https://library-management-system-server-eta.vercel.app/books/category/${category}`);
                 const data = await response.json();
-
                 setTimeout(() => {
                     setBooks(data.data || []);
                     setLoading(false);
@@ -32,38 +32,39 @@ const CategoryBooksPage = () => {
     }, [category]);
 
     return (
-        <div className="container mx-auto pt-28 max-w-[1250px]">
-            <h1 className="text-4xl font-extrabold text-center text-[#003366] mb-10 px-4 md:px-6 lg:px-8 xl:px-0">
-                Books in <span className="text-[#003366]">{category}</span>
-            </h1>
+        <div className="max-w-[1250px] mx-auto pt-28 px-4 md:px-6 lg:px-8 xl:px-0">
+            <h2 className="text-4xl font-extrabold text-center text-[#003366] pb-10">
+                Books in {category}
+            </h2>
+
             {loading ? (
                 <div className="flex items-center justify-center h-screen">
                     <ScaleLoader color="#003366" loading={loading} size={100} />
                 </div>
             ) : (
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="grid grid-cols-1 gap-8 pb-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {books.map((book) => (
-                        <div
-                            key={book._id}
-                            className="overflow-hidden transition-shadow duration-300 bg-white rounded-lg shadow-lg hover:shadow-2xl"
-                        >
-                            <img
-                                src={book.image}
-                                alt={book.name}
-                                className="object-cover w-full h-64 transition-transform duration-300 transform hover:scale-105"
-                            />
-                            <div className="p-6">
-                                <h2 className="text-2xl font-semibold text-gray-900 truncate">{book.name}</h2>
-                                <p className="mt-2 text-gray-600">
-                                    Author: <span className="font-medium text-gray-800">{book.author}</span>
-                                </p>
-                                <p className="mt-1 text-gray-600">
-                                    Category: <span className="font-medium text-gray-800">{book.category}</span>
-                                </p>
-                                <p className="mt-1 text-gray-600">
-                                    Quantity: <span className="font-medium text-gray-800">{book.quantity}</span>
-                                </p>
-                                <div className="mt-3">
+                        <div key={book._id} className="flex flex-col h-full overflow-hidden rounded-lg shadow-lg">
+                            {/* Image */}
+                            <div className="overflow-hidden h-72">
+                                <img className="object-cover w-full h-full transition-transform duration-300 transform hover:scale-105" src={book.image} alt={book.name} />
+                            </div>
+
+                            {/* Content (flex-grow ensures equal height) */}
+                            <div className="flex flex-col flex-grow p-4">
+                                <button onClick={() => navigate(`/book/${book._id}`)} className="py-2 text-xl font-semibold uppercase text-[#003366] text-left">{book.name}</button>
+                                <Typography variant="body2" className="">
+                                    <span className="font-bold">Author:</span> {book.author}
+                                </Typography>
+                                <Typography variant="body2" className="">
+                                    <span className="font-bold">Category:</span> {book.category}
+                                </Typography>
+                                <Typography variant="body2" className="">
+                                    <span className="font-bold">Quantity:</span> {book.quantity}
+                                </Typography>
+                                
+                                {/* Rating */}
+                                <div className="t-auto ">
                                     <ReactStars
                                         count={5}
                                         value={parseInt(book.rating)}
@@ -73,12 +74,18 @@ const CategoryBooksPage = () => {
                                         activeColor="#ffd700"
                                     />
                                 </div>
-                                <button
+                            </div>
+
+                            {/* Buttons (Always at bottom) */}
+                            <div className="p-2 border-t">
+                                <Button
+                                    size="small"
+                                    color="primary"
                                     onClick={() => navigate(`/book/${book._id}`)}
-                                    className="w-full py-2 mt-4 font-medium text-white transition-colors duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none"
+                                    className="w-full"
                                 >
-                                    View Details
-                                </button>
+                                    <span className="font-bold">View Details</span>
+                                </Button>
                             </div>
                         </div>
                     ))}
