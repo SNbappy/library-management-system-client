@@ -87,6 +87,9 @@ const Reviews = () => {
                     ))}
                 </Swiper>
             </div>
+            <div className="flex">
+                <button className="mx-auto text-xl font-bold text-center bg-[#003366] text-white rounded-full px-8 py-2 mt-10">See All Review</button>
+            </div>
         </section>
     );
 };

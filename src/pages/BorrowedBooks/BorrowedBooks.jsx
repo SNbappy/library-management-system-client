@@ -88,11 +88,21 @@ const BorrowedBooks = () => {
                                 <img className="object-cover w-full h-full transition-transform duration-300 transform hover:scale-105" src={book.coverImage} alt={book.title} />
                             </div>
                             <div className="flex flex-col flex-grow p-4">
-                                <h2 className="py-2 text-xl font-semibold uppercase text-[#003366] text-left">{book.title}</h2>
+                                <button onClick={() => navigate(`/book/${book._id}`)} className="py-2 text-xl font-semibold uppercase text-[#003366] text-left">{book.title}</button>
                                 <p><span className="font-bold">Author:</span> {book.author}</p>
                                 <p><span className="font-bold">Category:</span> {book.category}</p>
                                 <p><span className="font-bold">Borrowed Date:</span> {new Date(book.borrowedDate).toLocaleDateString()}</p>
                                 <p><span className="font-bold">Return Date:</span> {new Date(book.returnDate).toLocaleDateString()}</p>
+                                {/* <div className="mt-auto">
+                                    <ReactStars
+                                        count={5}
+                                        value={parseFloat(book.rating) || 0}
+                                        edit={false}
+                                        size={24}
+                                        isHalf={true}
+                                        activeColor="#ffd700"
+                                    />
+                                </div> */}
                             </div>
                             <div className="p-2 border-t bg-[#003366]">
                                 <Button

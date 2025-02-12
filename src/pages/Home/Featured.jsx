@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { ScaleLoader } from "react-spinners";
 import { Button } from "@mui/material";
@@ -32,13 +32,12 @@ const Featured = () => {
             <h2 className="text-4xl font-extrabold text-center text-[#003366] pb-10">
                 Latest Books
             </h2>
-
             {loading ? (
                 <div className="flex items-center justify-center h-96">
                     <ScaleLoader color="#003366" loading={loading} size={100} />
                 </div>
             ) : (
-                <div className="grid grid-cols-1 gap-8 pb-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {books.map((book) => (
                         <div key={book._id} className="flex flex-col h-full overflow-hidden rounded-lg shadow-lg">
                             <div className="overflow-hidden h-72">
@@ -74,6 +73,9 @@ const Featured = () => {
                     ))}
                 </div>
             )}
+            <div className="flex mb-20">
+                <NavLink to="all-books" className="mx-auto text-xl font-bold text-center bg-[#003366] text-white rounded-full px-8 py-2 mt-10">See All Books</NavLink>
+            </div>
         </div>
     );
 };

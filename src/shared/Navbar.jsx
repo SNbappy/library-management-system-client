@@ -21,7 +21,7 @@ const Navbar = () => {
             <nav>
                 <div className="max-w-[1250px] mx-auto flex items-center justify-between py-2 px-4 md:px-6 lg:px-8 xl:px-0">
                     <div className="text-4xl font-extrabold text-white">
-                        <Link to="/"><img src="/src/assets/logo-updated_enhanced.png" alt="" className="w-40" /></Link>
+                        <Link to="/"><img src="/logo-updated_enhanced.png" alt="" className="w-40" /></Link>
                     </div>
                     <div className="block lg:hidden">
                         <button
@@ -86,6 +86,7 @@ const Navbar = () => {
                                 <Link to="/all-books" className="block hover:text-gray-300">All Books</Link>
                                 <Link to="/add-book" className="block hover:text-gray-300">Add Book</Link>
                                 <Link to="/borrowed-books" className="block hover:text-gray-300">Borrowed Books</Link>
+                                <Link to="/reviews" className="block hover:text-gray-300">User Review</Link>
                             </>
                         )}
                         {!user ? (

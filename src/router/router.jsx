@@ -14,6 +14,7 @@ import CategoryBooksPage from "../pages/CategoryBooksPage/CategoryBooksPage";
 import BookDetailsPage from "../pages/BookDetailsPage/BookDetailsPage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import PrivateRoute from "./PrivateRoute";
+import ReviewsPage from "../pages/ReviewsPage/ReviewsPage";
 
 const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
                 path: 'register',
                 element: <Register></Register>
             },
+            {
+                path: 'reviews',
+                element: <ReviewsPage></ReviewsPage>
+            }
         ]
     },
 ]);
