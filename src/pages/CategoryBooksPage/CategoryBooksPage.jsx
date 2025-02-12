@@ -77,14 +77,14 @@ const CategoryBooksPage = () => {
                             </div>
 
                             {/* Buttons (Always at bottom) */}
-                            <div className="p-2 border-t">
+                            <div className="p-2 border-t bg-[#003366]">
                                 <Button
                                     size="small"
                                     color="primary"
                                     onClick={() => navigate(`/book/${book._id}`)}
-                                    className="w-full"
+                                    className="w-full "
                                 >
-                                    <span className="font-bold">View Details</span>
+                                    <span className="font-bold text-white">View Details</span>
                                 </Button>
                             </div>
                         </div>

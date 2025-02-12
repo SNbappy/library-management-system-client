@@ -61,9 +61,9 @@ const AddBook = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen pt-28">
-            <div className="w-full max-w-3xl p-8 border rounded-lg shadow-lg">
-                <h2 className="mb-6 text-3xl font-bold text-center text-blue-600">
+        <div className="flex items-center justify-center min-h-screen px-4 mb-20 pt-28 md:px-6 lg:px-8 xl:px-0">
+            <div className="w-full max-w-xl p-4 bg-white border rounded-lg shadow-lg sm:max-w-2xl lg:max-w-3xl sm:p-6 lg:p-8">
+                <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-center text-[#003366]">
                     Add a New Book
                 </h2>
 
@@ -72,7 +72,7 @@ const AddBook = () => {
                         <ScaleLoader color="#003366" loading={loading} size={100} />
                     </div>
                 ) : (
-                    <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
+                    <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 md:grid-cols-2">
                         {/* Left Column */}
                         <div className="space-y-4">
                             {/* Book Cover Image URL */}
@@ -83,7 +83,7 @@ const AddBook = () => {
                                     name="image"
                                     value={formData.image}
                                     onChange={handleChange}
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
                                     placeholder="Enter image URL"
                                     required
                                 />
@@ -97,7 +97,7 @@ const AddBook = () => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
                                     placeholder="Enter book title"
                                     required
                                 />
@@ -111,7 +111,7 @@ const AddBook = () => {
                                     name="quantity"
                                     value={formData.quantity}
                                     onChange={handleChange}
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
                                     min="1"
                                     required
                                 />
@@ -125,7 +125,7 @@ const AddBook = () => {
                                     name="author"
                                     value={formData.author}
                                     onChange={handleChange}
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
                                     placeholder="Enter author's name"
                                     required
                                 />
@@ -141,7 +141,7 @@ const AddBook = () => {
                                     name="category"
                                     value={formData.category}
                                     onChange={handleChange}
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
                                 >
                                     <option value="Novel">Novel</option>
                                     <option value="Thriller">Thriller</option>
@@ -158,7 +158,7 @@ const AddBook = () => {
                                     name="description"
                                     value={formData.description}
                                     onChange={handleChange}
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
                                     placeholder="Enter a brief description of the book"
                                     rows="4"
                                     required
@@ -173,7 +173,7 @@ const AddBook = () => {
                                     name="rating"
                                     value={formData.rating}
                                     onChange={handleChange}
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
                                     min="1"
                                     max="5"
                                     required
@@ -182,10 +182,10 @@ const AddBook = () => {
                         </div>
 
                         {/* Full-Width Submit Button */}
-                        <div className="col-span-2">
+                        <div className="col-span-1 md:col-span-2">
                             <button
                                 type="submit"
-                                className="w-full py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-blue-300"
+                                className="w-full py-3 text-white bg-[#003366] rounded-lg hover:bg-[#004488] transition duration-300"
                             >
                                 Add Book
                             </button>

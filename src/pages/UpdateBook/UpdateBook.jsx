@@ -59,7 +59,7 @@ const UpdateBook = () => {
     return (
         <div className="flex items-center justify-center min-h-screen px-4 pb-20 pt-28">
             <div className="w-full max-w-2xl p-8 bg-white shadow-lg rounded-xl">
-                <h2 className="mb-6 text-3xl font-semibold text-center text-blue-700">
+                <h2 className="mb-6 text-3xl font-bold text-center text-[#003366]">
                     Update Book Details
                 </h2>
                 <form onSubmit={handleSubmit} className="grid gap-5">
@@ -156,7 +156,7 @@ const UpdateBook = () => {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="w-full py-3 text-lg text-white transition-all bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                        className="w-full py-3 text-lg text-white transition-all rounded-lg bg-[#003366] hover:bg-[#004477]"
                     >
                         Update Book
                     </button>

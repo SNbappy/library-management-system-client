@@ -152,7 +152,7 @@ const BookDetailsPage = () => {
     if (loading) {
         return (
             <div className="flex items-center justify-center h-screen">
-                <ScaleLoader color="#1D4ED8" height={50} width={8} radius={4} />
+                <ScaleLoader color="#003366" loading={loading} size={100} />
             </div>
         );
     }
