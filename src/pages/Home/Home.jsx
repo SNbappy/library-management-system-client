@@ -3,6 +3,7 @@ import Banner from './Banner';
 import WhyChoose from './WhyChoose';
 import Reviews from './Reviews';
 import CategoryBooks from '../CategoryBooks/CategoryBooks';
+import Featured from './Featured';
 
 const Home = () => {
 
@@ -14,6 +15,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <CategoryBooks></CategoryBooks>
+            <Featured></Featured>
             <WhyChoose></WhyChoose>
             <Reviews></Reviews>
         </div>
