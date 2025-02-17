@@ -5,6 +5,7 @@ import { ScaleLoader } from "react-spinners";
 import { Button } from "@mui/material";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const BorrowedBooks = () => {
     const [borrowedBooks, setBorrowedBooks] = useState([]);
@@ -68,13 +69,19 @@ const BorrowedBooks = () => {
 
     return (
         <div className="max-w-[1250px] mx-auto pt-28 px-4 md:px-6 lg:px-8 xl:px-0">
-            <h2 className="text-4xl font-extrabold text-center text-[#003366] pb-10">
+            <Helmet>
+                <title>Borrowed Books | QuillStack</title>
+            </Helmet>
+            <h2 className="text-4xl font-extrabold text-center text-[#003366] pb-10 dark:text-blue-400">
                 Borrowed Books
             </h2>
-
             {loading ? (
                 <div className="flex items-center justify-center h-screen">
-                    <ScaleLoader color="#003366" loading={loading} size={100} />
+                    <ScaleLoader
+                        color={document.documentElement.classList.contains("dark") ? "#60A5FA" : "#003366"}
+                        loading={loading}
+                        size={100}
+                    />
                 </div>
             ) : borrowedBooks.length === 0 ? (
                 <div className="flex items-center justify-center h-screen px-4">
@@ -88,13 +95,13 @@ const BorrowedBooks = () => {
                                 <img className="object-cover w-full h-full transition-transform duration-300 transform hover:scale-105" src={book.coverImage} alt={book.title} />
                             </div>
                             <div className="flex flex-col flex-grow p-4">
-                                <button onClick={() => navigate(`/book/${book._id}`)} className="py-2 text-xl font-semibold uppercase text-[#003366] text-left">{book.title}</button>
+                                <button onClick={() => navigate(`/book/${book._id}`)} className="py-2 text-xl font-semibold uppercase text-[#003366] text-left dark:text-blue-400">{book.title}</button>
                                 <p><span className="font-bold">Author:</span> {book.author}</p>
                                 <p><span className="font-bold">Category:</span> {book.category}</p>
                                 <p><span className="font-bold">Borrowed Date:</span> {new Date(book.borrowedDate).toLocaleDateString()}</p>
                                 <p><span className="font-bold">Return Date:</span> {new Date(book.returnDate).toLocaleDateString()}</p>
                                 {/* <div className="mt-auto">
-                                    <ReactStars
+                      -              <ReactStars
                                         count={5}
                                         value={parseFloat(book.rating) || 0}
                                         edit={false}
@@ -104,14 +111,14 @@ const BorrowedBooks = () => {
                                     />
                                 </div> */}
                             </div>
-                            <div className="p-2 border-t bg-[#003366]">
+                            <div className="p-2 bg-[#003366]">
                                 <Button
                                     size="small"
                                     color="primary"
                                     onClick={() => handleReturnBook(book._id)}
-                                    className="w-full text-white"
+                                    className="w-full"
                                 >
-                                    Return Book
+                                    <span className="text-white">Return Book</span>
                                 </Button>
                             </div>
                         </div>

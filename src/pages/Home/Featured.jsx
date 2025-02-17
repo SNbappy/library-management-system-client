@@ -29,22 +29,29 @@ const Featured = () => {
 
     return (
         <div className="max-w-[1250px] mx-auto px-4 md:px-6 lg:px-8 xl:px-0">
-            <h2 className="text-4xl font-extrabold text-center text-[#003366] pb-10">
+            <h2 className="text-4xl font-extrabold text-center text-[#003366] pb-5 dark:text-blue-400">
                 Latest Books
             </h2>
+            <p className="mb-10 text-lg font-medium text-center">
+                Discover a world of stories! Explore diverse book categories and find your next great read.
+            </p>
             {loading ? (
                 <div className="flex items-center justify-center h-96">
-                    <ScaleLoader color="#003366" loading={loading} size={100} />
+                    <ScaleLoader
+                        color={document.documentElement.classList.contains("dark") ? "#60A5FA" : "#003366"}
+                        loading={loading}
+                        size={100}
+                    />
                 </div>
             ) : (
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {books.map((book) => (
-                        <div key={book._id} className="flex flex-col h-full overflow-hidden rounded-lg shadow-lg">
+                        <div key={book._id} className="flex flex-col h-full overflow-hidden rounded-lg shadow-lg dark:bg-black">
                             <div className="overflow-hidden h-72">
                                 <img className="object-cover w-full h-full transition-transform duration-300 transform hover:scale-105" src={book.image} alt={book.name} />
                             </div>
                             <div className="flex flex-col flex-grow p-4">
-                                <button onClick={() => navigate(`/book/${book._id}`)} className="py-2 text-xl font-semibold uppercase text-[#003366] text-left">{book.name}</button>
+                                <button onClick={() => navigate(`/book/${book._id}`)} className="py-2 text-xl font-semibold uppercase text-[#003366] text-left dark:text-blue-400">{book.name}</button>
                                 <p><span className="font-bold">Author:</span> {book.author}</p>
                                 <p><span className="font-bold">Category:</span> {book.category}</p>
                                 <p><span className="font-bold">Quantity:</span> {book.quantity}</p>
@@ -59,12 +66,12 @@ const Featured = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="p-2 border-t bg-[#003366]">
+                            <div className="p-2 bg-[#003366]">
                                 <Button
                                     size="small"
                                     color="primary"
                                     onClick={() => navigate(`/book/${book._id}`)}
-                                    className="w-full "
+                                    className="w-full"
                                 >
                                     <span className="font-bold text-white">View Details</span>
                                 </Button>

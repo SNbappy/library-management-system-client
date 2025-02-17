@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { FaStar } from "react-icons/fa";
 
 const ReviewsPage = () => {
@@ -43,18 +44,21 @@ const ReviewsPage = () => {
 
     return (
         <section className="mx-auto max-w-[1250px] pt-28 pb-20">
+            <Helmet>
+                <title>Users Review | QuillStack</title>
+            </Helmet>
             <div className="container">
-                <h1 className="mb-5 text-4xl font-extrabold text-center text-[#003366]">What Our Users Say</h1>
-                <p className="mb-10 text-lg font-medium text-center text-gray-700">Hear from some of our happy users about their experience with QuillStacks.</p>
+                <h1 className="mb-5 text-4xl font-extrabold text-center text-[#003366] dark:text-blue-400">What Our Users Say</h1>
+                <p className="mb-10 text-lg font-medium text-center ">Hear from some of our happy users about their experience with QuillStacks.</p>
 
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                     {reviews.map((review, index) => (
-                        <div key={index} className="flex flex-col items-center p-6 text-center bg-white shadow-lg rounded-2xl">
+                        <div key={index} className="flex flex-col items-center p-6 text-center bg-white shadow-lg rounded-2xl dark:bg-black">
                             <div className="w-16 h-16 overflow-hidden border-4 border-[#003366] rounded-full">
                                 <img src={review.avatar} alt={review.name} className="object-cover w-full h-full" />
                             </div>
-                            <p className="text-lg italic text-center text-gray-600">"{review.comment}"</p>
-                            <h3 className="mt-3 text-lg font-semibold text-gray-800">{review.name}</h3>
+                            <p className="text-lg italic text-center">"{review.comment}"</p>
+                            <h3 className="mt-3 text-lg font-semibold text-gray-400">{review.name}</h3>
                             <div className="flex mt-2">
                                 {[...Array(review.rating)].map((_, i) => (
                                     <FaStar key={i} className="text-yellow-400 text-xl mx-0.5" />

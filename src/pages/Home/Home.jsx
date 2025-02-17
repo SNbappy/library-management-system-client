@@ -4,6 +4,7 @@ import WhyChoose from './WhyChoose';
 import Reviews from './Reviews';
 import CategoryBooks from '../CategoryBooks/CategoryBooks';
 import Featured from './Featured';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
 
@@ -13,9 +14,12 @@ const Home = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Home | QuillStack</title>
+            </Helmet>
             <Banner></Banner>
-            <Featured></Featured>
             <CategoryBooks></CategoryBooks>
+            <Featured></Featured>
             <WhyChoose></WhyChoose>
             <Reviews></Reviews>
         </div>

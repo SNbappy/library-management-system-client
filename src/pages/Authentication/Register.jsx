@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/AuthContext/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { Helmet } from "react-helmet";
 
 const Register = () => {
 
@@ -70,9 +71,12 @@ const Register = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
-                <h2 className="mb-6 text-2xl font-bold text-center text-blue-600">
+        <div className="flex items-center justify-center min-h-screen pb-20 pt-28">
+            <Helmet>
+                <title>Register | QuillStack</title>
+            </Helmet>
+            <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg dark:bg-black">
+                <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-center text-[#003366] dark:text-blue-400">
                     Register on QuillStacks
                 </h2>
                 <form onSubmit={handleSubmit}>
@@ -158,7 +162,7 @@ const Register = () => {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="w-full py-3 text-white transition bg-blue-600 rounded-lg hover:bg-blue-700"
+                        className="w-full py-3 text-white transition rounded-lg bg-[#003366] hover:bg-blue-700 "
                     >
                         Register
                     </button>

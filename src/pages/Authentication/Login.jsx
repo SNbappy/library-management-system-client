@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext/AuthProvider";
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import auth from "../../firebase/firebase.init";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { Helmet } from "react-helmet";
 
 const Login = () => {
 
@@ -55,9 +56,12 @@ const Login = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
-                <h2 className="mb-6 text-2xl font-bold text-center text-blue-600">
+        <div className="flex items-center justify-center min-h-screen pb-20 pt-28">
+            <Helmet>
+                <title>Login | QuillStack</title>
+            </Helmet>
+            <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg dark:bg-black">
+                <h2 className="mb-6 text-2xl font-bold text-center text-[#003366] sm:text-3xl dark:text-blue-400">
                     Log In to QuillStacks
                 </h2>
 
@@ -66,7 +70,7 @@ const Login = () => {
                     <div className="mb-4">
                         <label
                             htmlFor="email"
-                            className="block mb-2 font-medium text-gray-700"
+                            className="block mb-2 font-medium"
                         >
                             Email Address
                         </label>
@@ -85,7 +89,7 @@ const Login = () => {
                     <div className="mb-4">
                         <label
                             htmlFor="password"
-                            className="block mb-2 font-medium text-gray-700"
+                            className="block mb-2 font-medium"
                         >
                             Password
                         </label>
@@ -103,7 +107,7 @@ const Login = () => {
 
                     <button
                         type="submit"
-                        className="w-full py-3 text-white transition bg-blue-600 rounded-lg hover:bg-blue-700"
+                        className="w-full py-3 text-white transition bg-[#003366] rounded-lg hover:bg-blue-700"
                     >
                         Log In
                     </button>
@@ -111,7 +115,7 @@ const Login = () => {
 
                 {/* Google Login */}
                 <div className="my-4 text-center">
-                    <span className="text-gray-500">OR</span>
+                    <span className="">OR</span>
                 </div>
                 <button
                     onClick={handleGoogleLogin}

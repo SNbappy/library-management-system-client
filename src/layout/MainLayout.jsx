@@ -20,7 +20,7 @@ const MainLayout = () => {
     }
 
     return (
-        <div className="bg-[#f7f7f7]">
+        <div className="bg-[rgba(255,255,255,1)] dark:bg-gray-900 dark:text-gray-300">
             <Navbar />
             <Outlet />
             <Footer />

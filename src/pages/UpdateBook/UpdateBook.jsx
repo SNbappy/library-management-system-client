@@ -58,8 +58,8 @@ const UpdateBook = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen px-4 pb-20 pt-28">
-            <div className="w-full max-w-2xl p-8 bg-white shadow-lg rounded-xl">
-                <h2 className="mb-6 text-3xl font-bold text-center text-[#003366]">
+            <div className="w-full max-w-2xl p-8 bg-white shadow-lg dark:bg-black rounded-xl">
+                <h2 className="mb-6 text-3xl font-bold text-center text-[#003366] dark:text-blue-400">
                     Update Book Details
                 </h2>
                 <form onSubmit={handleSubmit} className="grid gap-5">
@@ -74,7 +74,7 @@ const UpdateBook = () => {
                             name="image"
                             value={formData.image}
                             onChange={handleChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400 dark:bg-blue-200 dark:text-black"
                             placeholder="Enter image URL"
                             required
                         />
@@ -91,7 +91,7 @@ const UpdateBook = () => {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400 dark:bg-blue-200 dark:text-black"
                             required
                         />
                     </div>
@@ -107,7 +107,7 @@ const UpdateBook = () => {
                             name="author"
                             value={formData.author}
                             onChange={handleChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400 dark:bg-blue-200 dark:text-black"
                             required
                         />
                     </div>
@@ -124,13 +124,13 @@ const UpdateBook = () => {
                                 name="category"
                                 value={formData.category}
                                 onChange={handleChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400 dark:bg-blue-200 dark:text-black"
                             >
                                 <option value="Novel">Novel</option>
                                 <option value="Thriller">Thriller</option>
                                 <option value="History">History</option>
                                 <option value="Drama">Drama</option>
-                                <option value="Sci-Fi">Sci-Fi</option>
+                                {/* <option value="Sci-Fi">Sci-Fi</option> */}
                             </select>
                         </div>
 
@@ -145,7 +145,7 @@ const UpdateBook = () => {
                                 name="rating"
                                 value={formData.rating}
                                 onChange={handleChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400 dark:bg-blue-200 dark:text-black"
                                 min="1"
                                 max="5"
                                 required

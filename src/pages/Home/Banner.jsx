@@ -37,9 +37,9 @@ const Banner = () => {
     ];
 
     return (
-        <div className="mb-20 bg-blue-100">
+        <div className="mb-20">
             {/* Ensure full width */}
-            <div className="w-screen overflow-hidden">
+            <div className="overflow-hidden">
                 <Slider {...settings}>
                     {slides.map((slide, index) => (
                         <div key={index} className="relative w-screen">
@@ -47,11 +47,11 @@ const Banner = () => {
                             <img
                                 src={slide.image}
                                 alt={slide.title}
-                                className="object-cover w-screen h-[500px] md:h-[600px] lg:h-[700px] shadow-lg"
+                                className="object-cover w-full h-[500px] md:h-[600px] lg:h-[700px] shadow-lg"
                             />
 
                             {/* Gradient Overlay */}
-                            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black via-transparent to-black/25"></div>
+                            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/50 via-transparent to-black/10"></div>
 
                             {/* Text Content */}
                             <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">

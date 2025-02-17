@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ScaleLoader } from "react-spinners";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet";
 
 const AddBook = () => {
     useEffect(() => {
@@ -61,8 +62,11 @@ const AddBook = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen px-4 mb-20 pt-28 md:px-6 lg:px-8 xl:px-0">
-            <div className="w-full max-w-xl p-4 bg-white border rounded-lg shadow-lg sm:max-w-2xl lg:max-w-3xl sm:p-6 lg:p-8">
+        <div className="flex items-center justify-center px-4 mb-20 min-h- screen pt-28 md:px-6 lg:px-8 xl:px-0 ">
+            <Helmet>
+                <title>Add Bo dark:text-gray-900 dark:bg-blue-100ok | QuilStack</title>
+            </Helmet>
+            <div className="w-full max-w-xl p-4 bg-white border rounded-lg shadow-lg sm:max-w-2xl lg:max-w-3xl sm:p-6 lg:p-8 dark:bg-black">
                 <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-center text-[#003366]">
                     Add a New Book
                 </h2>
@@ -77,13 +81,13 @@ const AddBook = () => {
                         <div className="space-y-4">
                             {/* Book Cover Image URL */}
                             <div>
-                                <label className="block font-medium text-gray-700">Book Cover Image URL</label>
+                                <label className="block font-medium">Book Cover Image URL</label>
                                 <input
                                     type="url"
                                     name="image"
                                     value={formData.image}
                                     onChange={handleChange}
-                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300 dark:text-gray-900 dark:bg-blue-100"
                                     placeholder="Enter image URL"
                                     required
                                 />
@@ -91,13 +95,13 @@ const AddBook = () => {
 
                             {/* Book Title */}
                             <div>
-                                <label className="block font-medium text-gray-700">Book Title</label>
+                                <label className="block font-medium ">Book Title</label>
                                 <input
                                     type="text"
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300 dark:text-gray-900 dark:bg-blue-100"
                                     placeholder="Enter book title"
                                     required
                                 />
@@ -105,13 +109,13 @@ const AddBook = () => {
 
                             {/* Quantity */}
                             <div>
-                                <label className="block font-medium text-gray-700">Quantity</label>
+                                <label className="block font-medium ">Quantity</label>
                                 <input
                                     type="number"
                                     name="quantity"
                                     value={formData.quantity}
                                     onChange={handleChange}
-                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300 dark:text-gray-900 dark:bg-blue-100"
                                     min="1"
                                     required
                                 />
@@ -119,13 +123,13 @@ const AddBook = () => {
 
                             {/* Author Name */}
                             <div>
-                                <label className="block font-medium text-gray-700">Author Name</label>
+                                <label className="block font-medium ">Author Name</label>
                                 <input
                                     type="text"
                                     name="author"
                                     value={formData.author}
                                     onChange={handleChange}
-                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300 dark:text-gray-900 dark:bg-blue-100"
                                     placeholder="Enter author's name"
                                     required
                                 />
@@ -136,29 +140,29 @@ const AddBook = () => {
                         <div className="space-y-4">
                             {/* Category */}
                             <div>
-                                <label className="block font-medium text-gray-700">Category</label>
+                                <label className="block font-medium ">Category</label>
                                 <select
                                     name="category"
                                     value={formData.category}
                                     onChange={handleChange}
-                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300 dark:text-gray-900 dark:bg-blue-100"
                                 >
                                     <option value="Novel">Novel</option>
                                     <option value="Thriller">Thriller</option>
                                     <option value="History">History</option>
                                     <option value="Drama">Drama</option>
-                                    <option value="Sci-Fi">Sci-Fi</option>
+                                    {/* <option value="Sci-Fi">Sci-Fi</option> */}
                                 </select>
                             </div>
 
                             {/* Description */}
                             <div>
-                                <label className="block font-medium text-gray-700">Short Description</label>
+                                <label className="block font-medium ">Short Description</label>
                                 <textarea
                                     name="description"
                                     value={formData.description}
                                     onChange={handleChange}
-                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300 dark:text-gray-900 dark:bg-blue-100"
                                     placeholder="Enter a brief description of the book"
                                     rows="4"
                                     required
@@ -167,13 +171,13 @@ const AddBook = () => {
 
                             {/* Rating */}
                             <div>
-                                <label className="block font-medium text-gray-700">Rating (1-5)</label>
+                                <label className="block font-medium ">Rating (1-5)</label>
                                 <input
                                     type="number"
                                     name="rating"
                                     value={formData.rating}
                                     onChange={handleChange}
-                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300"
+                                    className="w-full min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-blue-300 dark:text-gray-900 dark:bg-blue-100"
                                     min="1"
                                     max="5"
                                     required

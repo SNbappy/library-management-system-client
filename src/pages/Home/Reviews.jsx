@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const Reviews = () => {
     const reviews = [
@@ -49,12 +50,10 @@ const Reviews = () => {
         <section className="mx-auto max-w-[1250px] mb-20">
             <div className="container">
                 <div className="text-center">
-                    {/* <h2 className="mb-2 text-3xl font-bold text-gray-800">What Our Users Say</h2>
-                    <p className="text-gray-600">Hear from some of our happy users about their experience with QuillStacks.</p> */}
-                    <h1 className="mb-5 text-4xl font-extrabold text-center text-[#003366]">
+                    <h1 className="mb-5 text-4xl font-extrabold text-center text-[#003366] dark:text-blue-400">
                         What Our Users Say
                     </h1>
-                    <p className="mb-10 text-lg font-medium text-center text-gray-700">Hear from some of our happy users about their experience with QuillStacks.</p>
+                    <p className="mb-10 text-lg font-medium text-center ">Hear from some of our happy users about their experience with QuillStacks.</p>
                 </div>
                 <Swiper
                     modules={[Autoplay]}
@@ -70,13 +69,13 @@ const Reviews = () => {
                 >
                     {reviews.map((review, index) => (
                         <SwiperSlide key={index}>
-                            <div className="flex flex-col items-center p-6 text-center bg-white shadow-lg rounded-2xl">
-                                <div className="w-16 h-16 overflow-hidden border-4 border-[#003366] rounded-full">
+                            <div className="flex flex-col items-center p-6 text-center bg-white shadow-lg rounded-xl dark:bg-black">
+                                <div className="w-16 h-16 overflow-hidden border-4 border-[#003366] rounded-full dark:border-blue-400">
                                     <img src={review.avatar} alt={review.name} className="object-cover w-full h-full" />
                                 </div>
-                                <FaQuoteLeft className="my-4 text-3xl text-[#003366]" />
-                                <p className="text-lg italic text-center text-gray-600">"{review.comment}"</p>
-                                <h3 className="mt-3 text-lg font-semibold text-gray-800">{review.name}</h3>
+                                <FaQuoteLeft className="my-4 text-3xl text-[#003366] dark:text-blue-400" />
+                                <p className="text-lg italic text-center ">"{review.comment}"</p>
+                                <h3 className="mt-3 text-lg font-semibold">{review.name}</h3>
                                 <div className="flex mt-2">
                                     {[...Array(review.rating)].map((_, i) => (
                                         <FaStar key={i} className="text-yellow-400 text-xl mx-0.5" />
@@ -88,7 +87,7 @@ const Reviews = () => {
                 </Swiper>
             </div>
             <div className="flex">
-                <button className="mx-auto text-xl font-bold text-center bg-[#003366] text-white rounded-full px-8 py-2 mt-10">See All Review</button>
+                <NavLink to="/reviews" className="mx-auto text-xl font-bold text-center bg-[#003366] text-white rounded-full px-8 py-2 mt-10">See All Review</NavLink>
             </div>
         </section>
     );

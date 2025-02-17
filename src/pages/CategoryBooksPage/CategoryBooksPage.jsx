@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button, Typography } from "@mui/material";
 import ReactStars from "react-rating-stars-component";
 import { ScaleLoader } from "react-spinners";
+import { Helmet } from "react-helmet";
 
 const CategoryBooksPage = () => {
     const { category } = useParams();
@@ -33,7 +34,10 @@ const CategoryBooksPage = () => {
 
     return (
         <div className="max-w-[1250px] mx-auto pt-28 px-4 md:px-6 lg:px-8 xl:px-0">
-            <h2 className="text-4xl font-extrabold text-center text-[#003366] pb-10">
+            <Helmet>
+                <title>Books in {category} | QuillStack</title>
+            </Helmet>
+            <h2 className="text-4xl font-extrabold text-center text-[#003366] pb-10 dark:text-blue-400">
                 Books in {category}
             </h2>
 
@@ -52,7 +56,7 @@ const CategoryBooksPage = () => {
 
                             {/* Content (flex-grow ensures equal height) */}
                             <div className="flex flex-col flex-grow p-4">
-                                <button onClick={() => navigate(`/book/${book._id}`)} className="py-2 text-xl font-semibold uppercase text-[#003366] text-left">{book.name}</button>
+                                <button onClick={() => navigate(`/book/${book._id}`)} className="py-2 text-xl font-semibold uppercase text-[#003366] text-left dark:text-blue-400">{book.name}</button>
                                 <Typography variant="body2" className="">
                                     <span className="font-bold">Author:</span> {book.author}
                                 </Typography>
@@ -77,7 +81,7 @@ const CategoryBooksPage = () => {
                             </div>
 
                             {/* Buttons (Always at bottom) */}
-                            <div className="p-2 border-t bg-[#003366]">
+                            <div className="p-2 bg-[#003366]">
                                 <Button
                                     size="small"
                                     color="primary"

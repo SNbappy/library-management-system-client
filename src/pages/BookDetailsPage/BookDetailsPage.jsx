@@ -6,6 +6,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { ScaleLoader } from "react-spinners";
+import { Helmet } from "react-helmet";
 
 
 const MySwal = withReactContent(Swal);
@@ -159,14 +160,17 @@ const BookDetailsPage = () => {
 
     return (
         <div className="container py-8 mx-auto">
+            <Helmet>
+                <title>Book Details | QuillStack</title>
+            </Helmet>
             <button
                 onClick={() => navigate(-1)}
-                className="px-4 py-2 mb-4 text-white rounded-lg shadow-lg bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-500 hover:to-gray-700"
+                className="px-4 py-2 mb-4 rounded-lg shadow-lg"
             >
                 Go Back
             </button>
 
-            <div className="p-6 m-10 bg-white rounded-lg shadow-md">
+            <div className="p-6 m-10 bg-white rounded-lg shadow-md dark:bg-black">
                 <div className="flex flex-col gap-5 md:flex-row">
                     <img
                         src={book.image}
@@ -174,17 +178,17 @@ const BookDetailsPage = () => {
                         className="object-cover w-full max-w-sm rounded-lg shadow-lg md:mr-6"
                     />
                     <div className="flex-1 mt-4 md:mt-0">
-                        <h1 className="mb-4 text-3xl font-extrabold text-gray-800">{book.name}</h1>
-                        <p className="mb-2 text-gray-600">
+                        <h1 className="mb-4 text-3xl font-extrabold text-[#003366] dark:text-blue-400">{book.name}</h1>
+                        <p className="mb-2">
                             <strong>Author:</strong> {book.author}
                         </p>
-                        <p className="mb-2 text-gray-600">
+                        <p className="mb-2">
                             <strong>Category:</strong> {book.category}
                         </p>
-                        <p className="mb-2 text-gray-600">
+                        <p className="mb-2">
                             <strong>Quantity:</strong> {book.quantity}
                         </p>
-                        <p className="mb-4 text-gray-600">
+                        <p className="mb-4">
                             <strong>Description:</strong> {book.description}
                         </p>
                         <div className="mt-4">
@@ -200,7 +204,7 @@ const BookDetailsPage = () => {
                         <button
                             onClick={openModal}
                             className={`px-6 py-3 mt-6 text-white text-lg font-semibold rounded-lg shadow-md transition-transform transform-gpu ${book.quantity > 0 && !isAlreadyBorrowed()
-                                ? "bg-gradient-to-r from-[#003366] to-blue-700 hover:scale-105"
+                                ? "bg-[#003366] hover:scale-105"
                                 : "bg-gray-400 cursor-not-allowed"
                                 }`}
                             disabled={book.quantity === 0 || isAlreadyBorrowed()}
@@ -215,12 +219,13 @@ const BookDetailsPage = () => {
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
                 contentLabel="Borrow Book"
-                className="w-1/3 p-8 bg-white rounded-lg shadow-xl md:w-1/2"
-                overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+                className="w-11/12 max-w-lg p-6 bg-white rounded-lg shadow-xl md:w-3/4 lg:w-1/2 sm:p-8 dark:bg-gray-300"
+                overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
             >
-                <h2 className="mb-6 text-2xl font-bold text-gray-800">Borrow Book</h2>
+                <h2 className="mb-6 text-2xl font-bold text-center text-gray-800">Borrow Book</h2>
+
                 <div className="mb-4">
-                    <label className="block mb-2 text-sm font-medium text-gray-600">Name</label>
+                    <label className="block mb-2 text-sm font-medium">Name</label>
                     <input
                         type="text"
                         value={borrowDetails.name}
@@ -228,8 +233,9 @@ const BookDetailsPage = () => {
                         className="w-full p-3 bg-gray-100 border rounded-lg"
                     />
                 </div>
+
                 <div className="mb-4">
-                    <label className="block mb-2 text-sm font-medium text-gray-600">Email</label>
+                    <label className="block mb-2 text-sm font-medium">Email</label>
                     <input
                         type="email"
                         value={borrowDetails.email}
@@ -237,8 +243,9 @@ const BookDetailsPage = () => {
                         className="w-full p-3 bg-gray-100 border rounded-lg"
                     />
                 </div>
+
                 <div className="mb-6">
-                    <label className="block mb-2 text-sm font-medium text-gray-600">Return Date</label>
+                    <label className="block mb-2 text-sm font-medium">Return Date</label>
                     <input
                         type="date"
                         value={borrowDetails.returnDate}
@@ -248,13 +255,15 @@ const BookDetailsPage = () => {
                         className="w-full p-3 border rounded-lg"
                     />
                 </div>
+
                 <button
                     onClick={handleBorrow}
-                    className="w-full px-4 py-3 text-white rounded-lg shadow-md bg-gradient-to-r from-green-500 to-green-700 hover:from-green-400 hover:to-green-600"
+                    className="w-full px-4 py-3 text-white rounded-lg shadow-md bg-[#003366] hover:bg-blue-700 transition duration-200"
                 >
                     Confirm Borrow
                 </button>
             </Modal>
+
         </div>
     );
 };

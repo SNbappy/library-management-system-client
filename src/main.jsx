@@ -6,11 +6,14 @@ import {
 } from "react-router-dom";
 import router from './router/router';
 import { AuthProvider } from './context/AuthContext/AuthProvider';
+import DarkModeProvider from './components/DarkModeContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <DarkModeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </DarkModeProvider>
   </StrictMode>,
 )

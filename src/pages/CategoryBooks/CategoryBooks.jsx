@@ -46,16 +46,20 @@ const CategoryBooks = () => {
     return (
         <div className="mb-20">
             <div className="container max-w-[1250px] mx-auto px-4 md:px-6 lg:px-8 xl:px-0">
-                <h1 className="text-4xl font-extrabold text-center text-[#003366] mb-5">
+                <h1 className="text-4xl font-extrabold text-center text-[#003366] mb-5 dark:text-blue-400">
                     Explore Book Categories
                 </h1>
-                <p className="mb-10 text-lg font-medium text-center text-gray-700">
+                <p className="mb-10 text-lg font-medium text-center">
                     Discover a world of stories! Explore diverse book categories and find your next great read.
                 </p>
 
                 {loading ? (
                     <div className="flex items-center justify-center h-96">
-                        <ScaleLoader color="#003366" loading={loading} size={100} />
+                        <ScaleLoader
+                            color={document.documentElement.classList.contains("dark") ? "#60A5FA" : "#003366"}
+                            loading={loading}
+                            size={100}
+                        />
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
